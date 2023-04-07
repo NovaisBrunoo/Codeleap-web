@@ -1,0 +1,13 @@
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    color: #ffffff;
+}
+
+header img {
+    margin-top: 15px;
+}
