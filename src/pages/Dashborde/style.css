@@ -32,28 +32,31 @@
     align-items: center;
     flex-direction: column;
     z-index: 1;
-    width: 100%;
-    height: 100%;
-    gap: 15px;
+    width: 100vw;
+    height: 95vh;
+    gap: 10px;
+    overflow-y: scroll;
 }
 
-.containerTitle {
+.container h1 {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 70px;
-    width: 80%;
+    width: 50%;
     padding: 5px 25px;
     border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.507);
     color: #ffffff;
+    margin-bottom: 0;
 }
 
-.containerPost {
+.container form {
+    position: relative;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 80%;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 50%;
     height: 35%;
     padding: 5px 25px;
 
@@ -62,26 +65,87 @@
     color: #ffffff;
 }
 
-.formPost {
+.container form h1 {
+    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 77.9%;
-    height: 30%;
-    padding: 0px 25px;
-
-    background-color: rgba(192, 192, 192, 0.158);
+    justify-content: flex-start;
+    align-items: center;
+    height: 70px;
+    width: 50%;
+    padding: 5px 25px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #ffffff;
 }
 
 .contentinput {
     height: 80px;
-    width: 75%;
+    width: 90%;
+    float: left;
+    clear: left;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    padding: 5px 15px;
+}
 
+.contentinput::placeholder {
+    color: lightgray;
+    position: relative;
+    top: -20px;
+    float: left;
+    clear: left;
 }
 
 .titleinput {
-    width: 75%;
+    width: 90%;
     height: 15%;
     margin-bottom: 15px;
+}
+
+.btn-post {
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.container .containerComments {
+    width: 50%;
+    min-height: 17%;
+    max-height: 30%;
+    border-radius: 8px;
+    padding: 5px 25px;
+    background-color: rgba(0, 0, 0, 0.507);
+    color: #ffffff;
+    z-index: 2;
+}
+
+.container .containerComments h2 {
+    width: 95%;
+}
+
+.containerTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    transition: 0.2s;
+    cursor: pointer;
+
+}
+
+.vector img:hover {
+    transform: scale(1.1);
+
+}
+
+.comments {
+    width: 100%;
+    height: 50%;
+    overflow-y: scroll;
+    text-align: justify;
 }
