@@ -23,7 +23,7 @@ function Main() {
     <div className="containerMain">
       <Bgvideo />
       <Header />
-      <form onSubmit={() => handleNavi()}>
+      <form className='formMain' onSubmit={() => handleNavi()}>
         <strong>
           Welcome to CodeLeap network!
         </strong>
