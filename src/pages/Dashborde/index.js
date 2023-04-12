@@ -3,11 +3,14 @@ import api from '../../api/api';
 import TrashVetor from '../../assets/Vector.svg';
 import EditeVetor from '../../assets/bx_bx-edit.svg';
 import ModalEdite from '../../components/EditeModal';
-import { getItem } from '../../utils/storage';
+import { getItem, clear } from '../../utils/storage';
 import './style.css';
+import logout from '../../assets/logout.svg'
 import DeliteModal from '../../components/DeliteModal';
+import { useNavigate } from "react-router-dom";
 
 function Dashborde() {
+  const navigate = useNavigate()
   const [id, setId] = useState('');
   const [open, setOpen] = useState(false)
   const [openDelite, setOpenDelite] = useState(false)
@@ -25,7 +28,7 @@ function Dashborde() {
     setFormPost({ ...formPost, [event.target.name]: event.target.value });
   }
 
-  function clear() {
+  function clearfrom() {
     setFormPost({
       title: '',
       content: ''
@@ -42,7 +45,7 @@ function Dashborde() {
         content: formPost.content
       });
       handlepost()
-      clear()
+      clearfrom()
     } catch (error) {
       console.log(error);
     }
@@ -82,6 +85,11 @@ function Dashborde() {
     setId(e.target.id)
     setOpen(true)
   }
+
+  function handleLogout() {
+    clear()
+    navigate('/')
+  }
   return (
     <div className='containerDashborde'>
       <div className='bgImg'>
@@ -95,7 +103,7 @@ function Dashborde() {
             <DeliteModal setOpenDelite={setOpenDelite} id={id} />
           }
           <h1>CodeLeap Network</h1>
-
+          <img className='btnLogout' onClick={() => handleLogout()} src={logout} alt='logout page' />
           <div className='containerForm'>
             <form className='formPost' onSubmit={handleSubmit}>
               <h1>What’s on your mind?</h1>

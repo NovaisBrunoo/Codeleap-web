@@ -3,7 +3,6 @@ import api from '../../api/api';
 import { useState } from 'react';
 
 function ModalEdite({ setOpen, id }) {
-    console.log(id)
     const [formModal, setFormModal] = useState(
         {
             title: '',
@@ -15,11 +14,12 @@ function ModalEdite({ setOpen, id }) {
         event.preventDefault()
         event.stopPropagation()
         try {
-            await api.post('careers/:id', {
+            await api.patch(`careers/${id}/`, {
                 title: formModal.title,
                 content: formModal.content
             });
             clear()
+            setOpen(false)
         } catch (error) {
             console.log(error);
         }

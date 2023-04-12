@@ -43,6 +43,7 @@
     padding: 5px 25px;
     border-radius: 15px;
     color: #ffffff;
+    background-color: rgba(0, 0, 0, 0);
     margin-bottom: 0;
 }
 
@@ -65,10 +66,9 @@
     justify-content: flex-start;
     align-items: center;
     height: 70px;
-    width: 50%;
+    width: 100%;
     padding: 5px 25px;
     border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0);
     color: #ffffff;
 }
 
@@ -167,9 +167,25 @@
     height: 100vh;
 }
 
+.btnLogout {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 50px;
+}
+
+.btnLogout {
+    width: 50px;
+    height: 50px;
+}
+
+.btnLogout:hover {
+    transform: scale(1.1);
+}
+
 @media (max-width: 375px) {
     .container h1 {
-        width: auto;
+        width: 50%;
         margin-top: 0;
         margin-bottom: 25px;
     }
@@ -203,11 +219,12 @@
     .container .containerComments {
         width: 80%;
     }
+
 }
 
 @media (max-width:673px) {
     .container h1 {
-        width: auto;
+        width: 50%;
         margin-top: 0;
         margin-bottom: 25px;
     }
