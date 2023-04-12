@@ -1,0 +1,88 @@
+.containerModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.498);
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 660px;
+    height: 334px;
+    background-color: #ffffff;
+    border-radius: 16px;
+}
+
+.modal .titleModal {
+    width: 80%;
+    color: #000000;
+
+}
+
+.formEdite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    height: 95%;
+}
+
+.formEdite input {
+    width: 100%;
+    height: 15%;
+    border-radius: 8px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #CCCCCC;
+    padding: 10px 15px;
+}
+
+.formEdite textarea {
+    width: 100%;
+    height: 30%;
+    border-radius: 8px;
+}
+
+.formEdite label {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    color: #000000;
+
+}
+
+.containerBtn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.containerBtn button {
+    margin-right: 10px;
+}
+
+.btn-save {
+    background-color: #47B960;
+}
+
+.btn-cancel {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+}

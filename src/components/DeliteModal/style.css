@@ -1,0 +1,45 @@
+.containerDeliteModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.498);
+}
+
+.deliteModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 660px;
+    height: 146px;
+    background-color: #ffffff;
+    border-radius: 16px;
+}
+
+.containerBtn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.containerBtn button {
+    margin-right: 10px;
+}
+
+.btn-delete {
+    background-color: #FF5151;
+}
+
+.deliteModal h2 {
+    width: 90%;
+    color: #000000;
+}
