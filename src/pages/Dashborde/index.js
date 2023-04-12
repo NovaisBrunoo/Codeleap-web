@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
-import './style.css';
-import TrashVetor from '../../assets/Vector.svg'
 import api from '../../api/api';
-import EditeVetor from '../../assets/bx_bx-edit.svg'
+import TrashVetor from '../../assets/Vector.svg';
+import EditeVetor from '../../assets/bx_bx-edit.svg';
+import ModalEdite from '../../components/EditeModal';
 import { getItem } from '../../utils/storage';
-
+import './style.css';
+import DeliteModal from '../../components/DeliteModal';
 
 function Dashborde() {
+  const [id, setId] = useState('');
+  const [open, setOpen] = useState(false)
+  const [openDelite, setOpenDelite] = useState(false)
+  const [control, setControl] = useState('controle')
+  const localarray = [];
   const [arrayPost, setArrayPost] = useState([]);
-  const username = getItem('token')
+  const user = getItem('token')
   const [formPost, setFormPost] = useState(
     {
       title: '',
@@ -19,27 +25,34 @@ function Dashborde() {
     setFormPost({ ...formPost, [event.target.name]: event.target.value });
   }
 
+  function clear() {
+    setFormPost({
+      title: '',
+      content: ''
+    })
+  }
+
   async function handleSubmit(event) {
-    console.log('entro no submit')
     event.preventDefault()
+    event.stopPropagation()
     try {
-      const response = await api.post('/careers/', {
-        username,
+      await api.post('careers/', {
+        username: user,
         title: formPost.title,
         content: formPost.content
       });
-
-      console.log(response.data)
+      handlepost()
+      clear()
     } catch (error) {
       console.log(error);
     }
   }
 
-
   async function handlepost() {
     try {
-      const response = await api.get('/careers/');
-      setArrayPost(response.data.results)
+      const { data: { results } } = await api.get('careers/?limit=1000&offset=0');
+      localarray.push([...results])
+      setArrayPost(results)
 
     } catch (error) {
       console.log(error);
@@ -47,13 +60,40 @@ function Dashborde() {
   }
 
   useEffect(() => {
-    handlepost()
-  }, [arrayPost])
+    if (control === 'controle') {
+      handlepost()
+      setControl('banana')
+    }
 
+    if (control === 'banana') {
+      setTimeout(() => {
+        handlepost()
+
+      }, 10000);
+    }
+  }, [arrayPost, control])
+
+  function handleModal(e) {
+    setId(e.target.id)
+    setOpenDelite(true)
+  }
+
+  function HandleModalDelete(e) {
+    setId(e.target.id)
+    setOpen(true)
+  }
   return (
     <div className='containerDashborde'>
       <div className='bgImg'>
         <div className='container'>
+          {open &&
+            <ModalEdite
+              setOpen={setOpen}
+              id={id}
+            />}
+          {openDelite &&
+            <DeliteModal setOpenDelite={setOpenDelite} id={id} />
+          }
           <h1>CodeLeap Network</h1>
 
           <div className='containerForm'>
@@ -73,6 +113,7 @@ function Dashborde() {
                 className='contentinput'
                 name="content"
                 value={formPost.content}
+                placeholder='Content '
                 onChange={(e) => handleChangeForm(e)}
                 cols="23" rows="4" id="mensagem" wrap="hard">
               </textarea>
@@ -81,21 +122,22 @@ function Dashborde() {
           </div>
           <div className='containerContents'>
 
-            {arrayPost.map((post) => (
+            {arrayPost.map(({ title, username, content, id, created_datetime }) => (
 
-              <div className='containerComments' key={post.id}>
+              <div className='containerComments' key={id}>
 
                 <div className='containerTitle'>
-                  <h2>{post.title}</h2>
-                  {post.username === username && <div className='vector'>
-                    <img src={TrashVetor} alt='Vector trash' />
-                    <img src={EditeVetor} alt='Vector edite' />
+                  <h2>{title}</h2>
+                  {username === user && <div className='vector'>
+                    <img id={id} src={TrashVetor} alt='Vector trash' onClick={handleModal} />
+                    <img id={id} src={EditeVetor} alt='Vector edite' onClick={HandleModalDelete} />
                   </div>
                   }
                 </div>
+                <span className='userSpan'>@{username}</span>
                 <div className='comments'>
                   <p>
-                    {post.content}
+                    {content}
                   </p>
 
                 </div>
